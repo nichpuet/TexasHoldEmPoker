@@ -39,15 +39,18 @@
             this.betButton = new System.Windows.Forms.Button();
             this.balLabel = new System.Windows.Forms.Label();
             this.exit2Button = new System.Windows.Forms.Button();
+            this.optionLabel = new System.Windows.Forms.Label();
+            this.backButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // titleLabel
             // 
             this.titleLabel.AutoSize = true;
+            this.titleLabel.Font = new System.Drawing.Font("Rosewood Std Regular", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titleLabel.ForeColor = System.Drawing.Color.White;
-            this.titleLabel.Location = new System.Drawing.Point(318, 58);
+            this.titleLabel.Location = new System.Drawing.Point(184, 59);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(112, 13);
+            this.titleLabel.Size = new System.Drawing.Size(389, 43);
             this.titleLabel.TabIndex = 0;
             this.titleLabel.Text = "Texas Hold \'Em Poker";
             // 
@@ -63,7 +66,7 @@
             // 
             // optionButton
             // 
-            this.optionButton.Location = new System.Drawing.Point(333, 209);
+            this.optionButton.Location = new System.Drawing.Point(333, 206);
             this.optionButton.Name = "optionButton";
             this.optionButton.Size = new System.Drawing.Size(75, 23);
             this.optionButton.TabIndex = 2;
@@ -73,7 +76,7 @@
             // 
             // exitButton
             // 
-            this.exitButton.Location = new System.Drawing.Point(333, 268);
+            this.exitButton.Location = new System.Drawing.Point(333, 264);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(75, 23);
             this.exitButton.TabIndex = 3;
@@ -143,12 +146,36 @@
             this.exit2Button.Visible = false;
             this.exit2Button.Click += new System.EventHandler(this.exit2Button_Click);
             // 
+            // optionLabel
+            // 
+            this.optionLabel.AutoSize = true;
+            this.optionLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.optionLabel.Location = new System.Drawing.Point(273, 235);
+            this.optionLabel.Name = "optionLabel";
+            this.optionLabel.Size = new System.Drawing.Size(193, 13);
+            this.optionLabel.TabIndex = 12;
+            this.optionLabel.Text = "There currently are no available options";
+            this.optionLabel.Visible = false;
+            // 
+            // backButton
+            // 
+            this.backButton.Location = new System.Drawing.Point(333, 264);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(75, 23);
+            this.backButton.TabIndex = 13;
+            this.backButton.Text = "Back";
+            this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Visible = false;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            // 
             // Poker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(734, 661);
+            this.Controls.Add(this.backButton);
+            this.Controls.Add(this.optionLabel);
             this.Controls.Add(this.exit2Button);
             this.Controls.Add(this.balLabel);
             this.Controls.Add(this.betButton);
@@ -179,6 +206,8 @@
         private System.Windows.Forms.Button betButton;
         private System.Windows.Forms.Label balLabel;
         private System.Windows.Forms.Button exit2Button;
+        private System.Windows.Forms.Label optionLabel;
+        private System.Windows.Forms.Button backButton;
     }
 }
 
