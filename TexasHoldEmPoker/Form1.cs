@@ -18,17 +18,24 @@ namespace TexasHoldEmPoker
         {
             InitializeComponent();
         }
+        int balance = 100;
 
         private void playButton_Click(object sender, EventArgs e)
         {
             Graphics fG = this.CreateGraphics();
             SolidBrush tableBrush = new SolidBrush(Color.Olive);
-            Pen briefPen = new Pen(Color.Black,5);
+            Pen briefPen = new Pen(Color.Black,3);
 
             titleLabel.Visible = false;
             playButton.Visible = false;
             optionButton.Visible = false;
             exitButton.Visible = false;
+            callButton.Visible = true;
+            betButton.Visible = true;
+            foldButton.Visible = true;
+            checkButton.Visible = true;
+            exit2Button.Visible = true;
+            balLabel.Visible = true;
 
             BackColor = Color.SandyBrown;
 
@@ -36,7 +43,9 @@ namespace TexasHoldEmPoker
             Refresh();
 
             fG.DrawLine(briefPen, 0, 500, 750, 500);
-           // fG.FillEllipse(tableBrush, 150, , 350, 300);
+            fG.FillEllipse(tableBrush, 100, 100, 550, 300);
+
+            balLabel.Text = "Balance: " + balance;
             
         }
 
@@ -46,6 +55,11 @@ namespace TexasHoldEmPoker
         }
 
         private void exitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void exit2Button_Click(object sender, EventArgs e)
         {
             this.Close();
         }
