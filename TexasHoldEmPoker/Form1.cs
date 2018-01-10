@@ -15,17 +15,34 @@ namespace TexasHoldEmPoker
     public partial class Poker : Form
     {
         List<int> deckValue = new List<int>();
+        List<string> deckSuit = new List<string>();
 
         public Poker()
         {
             InitializeComponent();
-            gameInit();
+
         }
         public void gameInit()
         {
             for (int i = 1; i <= 52; i++)
             {
                 deckValue.Add(i);
+            }
+            for (int i = 1; i <= 13; i++)
+            {
+                deckSuit.Add("Hearts");
+            }
+            for (int i = 1; i <= 13; i++)
+            {
+                deckSuit.Add("Diamonds");
+            }
+            for (int i = 1; i <= 13; i++)
+            {
+                deckSuit.Add("Clubs");
+            }
+            for (int i = 1; i <= 13; i++)
+            {
+                deckSuit.Add("Spades");
             }
         }
         int balance = 100;
@@ -51,7 +68,9 @@ namespace TexasHoldEmPoker
             DrawTable();
 
             balLabel.Text = "Balance: " + balance;
-            
+
+            gameInit();
+
         }
 
         private void optionButton_Click(object sender, EventArgs e)
