@@ -16,6 +16,18 @@ namespace TexasHoldEmPoker
     {
         List<int> deckValue = new List<int>();
         List<string> deckSuit = new List<string>();
+        List<int> p1Value = new List<int>();
+        List<String> p1Suit = new List<String>();
+        List<int> p2Value = new List<int>();
+        List<string> p2Suit = new List<string>();
+        List<int> p3Value = new List<int>();
+        List<string> p3Suit = new List<string>();
+        List<int> p4Value = new List<int>();
+        List<string> p4Suit = new List<string>();
+
+        
+
+        Random rand = new Random();
 
         public Poker()
         {
@@ -46,6 +58,7 @@ namespace TexasHoldEmPoker
             }
         }
         int balance = 100;
+        int lastBet = 0;
 
         private void playButton_Click(object sender, EventArgs e)
         {
@@ -113,6 +126,93 @@ namespace TexasHoldEmPoker
             exitButton.Visible = true;
             optionLabel.Visible = false;
             backButton.Visible = false;
+        }
+
+        private void Check()
+        {
+
+        }
+
+        private void Call(int bet)
+        {
+
+        }
+
+        private void Fold()
+        {
+
+        }
+
+        private void Bet()
+        {
+
+        }
+
+        private void DealHand(int player)
+        {
+            int tempValue;
+            string tempSuit;
+
+            switch (player)
+            {
+                case 1:
+                    for (int i = 1; i <= 3; i++)
+                    {
+                        int randGen = rand.Next(1, deckValue.Count+1);
+
+                        tempValue = deckValue[randGen];
+                        tempSuit = deckSuit[randGen];
+
+                        p1Value.Add(tempValue);
+                        p1Suit.Add(tempSuit);
+                    }
+                    break;
+                case 2:
+                    for (int i = 1; i <= 3; i++)
+                    {
+                        int randGen = rand.Next(1, deckValue.Count+1);
+
+                        tempValue = deckValue[randGen];
+                        tempSuit = deckSuit[randGen];
+
+                        p2Value.Add(tempValue);
+                        p2Suit.Add(tempSuit);
+                    }
+                    break;
+                case 3:
+                    for (int i = 1; i <= 3; i++)
+                    {
+                        int randGen = rand.Next(1, deckValue.Count + 1);
+
+                        tempValue = deckValue[randGen];
+                        tempSuit = deckSuit[randGen];
+
+                        p3Value.Add(tempValue);
+                        p3Suit.Add(tempSuit);
+                    }
+                    break;
+                case 4:
+                    for (int i = 1; i <= 3; i++)
+                    {
+                        int randGen = rand.Next(0, deckValue.Count + 1);
+
+                        tempValue = deckValue[randGen];
+                        tempSuit = deckSuit[randGen];
+
+                        p4Value.Add(tempValue);
+                        p4Suit.Add(tempSuit);
+                    }
+                    break;
+
+            }
+
+            
+            
+        }
+
+        private void DrawCard(int value, string suit)
+        {
+
         }
     }
 
