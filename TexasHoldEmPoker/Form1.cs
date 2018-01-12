@@ -72,6 +72,13 @@ namespace TexasHoldEmPoker
             checkButton.Visible = true;
             exit2Button.Visible = true;
             balLabel.Visible = true;
+            p1Card1.Visible = true;
+            p1Card2.Visible = true;
+            flopCard1.Visible = true;
+            flopCard2.Visible = true;
+            flopCard3.Visible = true;
+            turnCard.Visible = true;
+            riverCard.Visible = true;
 
             BackColor = Color.SandyBrown;
 
@@ -165,6 +172,16 @@ namespace TexasHoldEmPoker
 
                         p1Value.Add(tempValue);
                         p1Suit.Add(tempSuit);
+
+                        switch (i)
+                        {
+                            case 1:
+                                DrawCard(tempValue, tempSuit,1);
+                                break;
+                            case 2:
+                                DrawCard(tempValue, tempSuit, 2);
+                                break;
+                        }
                     }
                     break;
                 case 2:
@@ -210,9 +227,254 @@ namespace TexasHoldEmPoker
             
         }
 
-        private void DrawCard(int value, string suit)
+        private void DrawCard(int value, string suit,int CardToDraw)
         {
+            switch (suit)
+            {
+                case ("Hearts"):
+                    if (value == 1)
+                    {
+                        switch (CardToDraw)
+                        {
+                            case 1:
+                                p1Card1.Image = TexasHoldEmPoker.Properties.Resources._2Hearts;
+                                break;
+                            case 2:
+                                p1Card2.Image = TexasHoldEmPoker.Properties.Resources._2Hearts;
+                                break;
+                            case 3:
+                                flopCard1.Image = TexasHoldEmPoker.Properties.Resources._2Hearts;
+                                break;
+                            case 4:
+                                flopCard2.Image = TexasHoldEmPoker.Properties.Resources._2Hearts;
+                                break;
+                            case 5:
+                                flopCard3.Image = TexasHoldEmPoker.Properties.Resources._2Hearts;
+                                break;
+                            case 6:
+                                turnCard.Image = TexasHoldEmPoker.Properties.Resources._2Hearts;
+                                break;
+                            case 7:
+                                riverCard.Image = TexasHoldEmPoker.Properties.Resources._2Hearts;
+                                break;
+                        }
+                    }
+                    else if (value == 2)
+                    {
 
+                    }
+                    else if (value == 3)
+                    {
+
+                    }
+                    else if (value == 4)
+                    {
+
+                    }
+                    else if (value == 5)
+                    {
+
+                    }
+                    else if (value == 6)
+                    {
+
+                    }
+                    else if (value == 7)
+                    {
+
+                    }
+                    else if (value == 8)
+                    {
+
+                    }
+                    else if (value == 9)
+                    {
+
+                    }
+                    else if (value == 10)
+                    {
+
+                    }
+                    else if (value == 11)
+                    {
+
+                    }
+                    else if (value == 12)
+                    {
+
+                    }
+                    else if (value == 13) 
+                    {
+
+                    }
+
+                    break;
+
+                case ("Diamonds"):
+                    if (value == 14)
+                    {
+
+                    }
+                    else if (value == 15)
+                    {
+
+                    }
+                    else if (value == 16)
+                    {
+
+                    }
+                    else if (value == 17)
+                    {
+
+                    }
+                    else if (value == 18)
+                    {
+
+                    }
+                    else if (value == 19)
+                    {
+
+                    }
+                    else if (value == 20)
+                    {
+
+                    }
+                    else if (value == 21)
+                    {
+
+                    }
+                    else if (value == 22)
+                    {
+
+                    }
+                    else if (value == 23)
+                    {
+
+                    }
+                    else if (value == 24)
+                    {
+
+                    }
+                    else if (value == 25)
+                    {
+
+                    }
+                    else if (value == 26)
+                    {
+
+                    }
+                   
+                    break;
+                case ("Clubs"):
+                    if (value == 27)
+                    {
+
+                    }
+                    else if (value == 28)
+                    {
+
+                    }
+                    else if (value == 29)
+                    {
+
+                    }
+                    else if (value == 30)
+                    {
+
+                    }
+                    else if (value == 31)
+                    {
+
+                    }
+                    else if (value == 32)
+                    {
+
+                    }
+                    else if (value == 33)
+                    {
+
+                    }
+                    else if (value == 34)
+                    {
+
+                    }
+                    else if (value == 35)
+                    {
+
+                    }
+                    else if (value == 36)
+                    {
+
+                    }
+                    else if (value == 37)
+                    {
+
+                    }
+                    else if (value == 38)
+                    {
+
+                    }
+                    else if (value == 39)
+                    {
+
+                    }
+                    break;
+                case ("Spades"):
+                    if (value == 40)
+                    {
+
+                    }
+                    else if (value == 41)
+                    {
+
+                    }
+                    else if (value == 42)
+                    {
+
+                    }
+                    else if (value == 43)
+                    {
+
+                    }
+                    else if (value == 44)
+                    {
+
+                    }
+                    else if (value == 45)
+                    {
+
+                    }
+                    else if (value == 46)
+                    {
+
+                    }
+                    else if (value == 47)
+                    {
+
+                    }
+                    else if (value == 48)
+                    {
+
+                    }
+                    else if (value == 49)
+                    {
+
+                    }
+                    else if (value == 50)
+                    {
+
+                    }
+                    else if (value == 51)
+                    {
+
+                    }
+                    else if (value == 52)
+                    {
+
+                    }
+                    break;
+                
+            }
         }
     }
 
