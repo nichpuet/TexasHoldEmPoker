@@ -277,9 +277,9 @@
             this.outputLabel.AutoSize = true;
             this.outputLabel.Location = new System.Drawing.Point(273, 547);
             this.outputLabel.Name = "outputLabel";
-            this.outputLabel.Size = new System.Drawing.Size(35, 13);
+            this.outputLabel.Size = new System.Drawing.Size(121, 13);
             this.outputLabel.TabIndex = 22;
-            this.outputLabel.Text = "label1";
+            this.outputLabel.Text = "Please Select an Option";
             this.outputLabel.Visible = false;
             // 
             // Poker

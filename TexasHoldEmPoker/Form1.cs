@@ -34,6 +34,7 @@ namespace TexasHoldEmPoker
         List<string> turnSuit = new List<string>();
         List<int> riverValue = new List<int>();
         List<string> riverSuit = new List<string>();
+        List<int> turnOrder = new List<int>();
 
         Random rand = new Random();
 
@@ -63,6 +64,10 @@ namespace TexasHoldEmPoker
             for (int i = 1; i <= 13; i++)
             {
                 deckSuit.Add("Spades");
+            }
+            for (int i = 1; i<=5; i++)
+            {
+                turnOrder.Add(i);
             }
         }
 
@@ -95,6 +100,7 @@ namespace TexasHoldEmPoker
             turnCard.Visible = true;
             riverCard.Visible = true;
             potLabel.Visible = true;
+            outputLabel.Visible = true;
 
             BackColor = Color.SandyBrown;
 
@@ -108,7 +114,7 @@ namespace TexasHoldEmPoker
 
             gameInit();
 
-
+            DealHand(1);
 
         }
 
@@ -173,6 +179,9 @@ namespace TexasHoldEmPoker
                     {
                         p1Balance = p1Balance - lastBet;
                         pot = pot + lastBet;
+
+                        balLabel.Text = "Balance: " + p1Balance;
+                        potLabel.Text = "Pot: " + pot;
                     }
                     break;
                 case 2:
@@ -273,7 +282,7 @@ namespace TexasHoldEmPoker
                 case 1:
                     for (int i = 1; i <= 3; i++)
                     {
-                        int randGen = rand.Next(1, deckValue.Count + 1);
+                        int randGen = rand.Next(1, deckValue.Count);
 
                         tempValue = deckValue[randGen];
                         tempSuit = deckSuit[randGen];
@@ -1763,6 +1772,17 @@ namespace TexasHoldEmPoker
         private void callButton_Click(object sender, EventArgs e)
         {
             Call(1);
+        }
+
+        private void Turns()
+        {
+           for (int i = 1; i >=  turnOrder.Count; i++)
+            {
+                if (i > 4)
+                {
+                    i = 1;
+                }
+            }
         }
     }
 
