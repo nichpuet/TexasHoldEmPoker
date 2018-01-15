@@ -48,6 +48,8 @@
             this.flopCard3 = new System.Windows.Forms.PictureBox();
             this.turnCard = new System.Windows.Forms.PictureBox();
             this.riverCard = new System.Windows.Forms.PictureBox();
+            this.potLabel = new System.Windows.Forms.Label();
+            this.outputLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.p1Card1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p1Card2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.flopCard1)).BeginInit();
@@ -259,12 +261,35 @@
             this.riverCard.TabStop = false;
             this.riverCard.Visible = false;
             // 
+            // potLabel
+            // 
+            this.potLabel.AutoSize = true;
+            this.potLabel.Font = new System.Drawing.Font("Cooper Std Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.potLabel.Location = new System.Drawing.Point(13, 32);
+            this.potLabel.Name = "potLabel";
+            this.potLabel.Size = new System.Drawing.Size(39, 19);
+            this.potLabel.TabIndex = 21;
+            this.potLabel.Text = "Pot";
+            this.potLabel.Visible = false;
+            // 
+            // outputLabel
+            // 
+            this.outputLabel.AutoSize = true;
+            this.outputLabel.Location = new System.Drawing.Point(273, 547);
+            this.outputLabel.Name = "outputLabel";
+            this.outputLabel.Size = new System.Drawing.Size(35, 13);
+            this.outputLabel.TabIndex = 22;
+            this.outputLabel.Text = "label1";
+            this.outputLabel.Visible = false;
+            // 
             // Poker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(734, 661);
+            this.Controls.Add(this.outputLabel);
+            this.Controls.Add(this.potLabel);
             this.Controls.Add(this.riverCard);
             this.Controls.Add(this.turnCard);
             this.Controls.Add(this.flopCard3);
@@ -320,6 +345,8 @@
         private System.Windows.Forms.PictureBox flopCard3;
         private System.Windows.Forms.PictureBox turnCard;
         private System.Windows.Forms.PictureBox riverCard;
+        private System.Windows.Forms.Label potLabel;
+        private System.Windows.Forms.Label outputLabel;
     }
 }
 
