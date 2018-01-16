@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 //Nick Puetz | 1/8/1018 | Texas Hold em Poker
 
@@ -45,9 +46,12 @@ namespace TexasHoldEmPoker
         }
         public void gameInit()
         {
-            for (int i = 1; i <= 52; i++)
+            for (int q = 1; q <= 4; q++)
             {
-                deckValue.Add(i);
+                for (int i = 2; i <= 14; i++)
+                {
+                    deckValue.Add(i);
+                }
             }
             for (int i = 1; i <= 13; i++)
             {
@@ -115,7 +119,19 @@ namespace TexasHoldEmPoker
             gameInit();
 
             DealHand(1);
+            CenterCards("Flop");
 
+            Thread.Sleep(1000);
+            Refresh();
+            DrawTable();
+
+            CenterCards("Turn");
+
+            Thread.Sleep(1000);
+            Refresh();
+            DrawTable();
+
+            CenterCards("River");
         }
 
         private void optionButton_Click(object sender, EventArgs e)
@@ -235,38 +251,64 @@ namespace TexasHoldEmPoker
 
         }
 
-        private void CenterCards(int cardIdentifier)
+        private void CenterCards(string turnIdentifier)
         {
-            int randGen = rand.Next(1, deckValue.Count + 1);
+            int randGen = rand.Next(1, deckValue.Count );
 
             tempValue = deckValue[randGen];
             tempSuit = deckSuit[randGen];
 
-            switch (cardIdentifier)
+            switch (turnIdentifier)
             {
-                case 1:
+                case "Flop":
                     flop1Value.Add(tempValue);
                     flop1Suit.Add(tempSuit);
-                    break;
+                    DrawCard(tempValue, tempSuit, 3);
 
-                case 2:
+                    deckValue.RemoveAt(randGen);
+                    deckSuit.RemoveAt(randGen);
+
+                    randGen = rand.Next(1, deckValue.Count);
+
+                    tempValue = deckValue[randGen];
+                    tempSuit = deckSuit[randGen];
+
                     flop2Value.Add(tempValue);
                     flop2Suit.Add(tempSuit);
-                    break;
+                    DrawCard(tempValue, tempSuit, 4);
 
-                case 3:
+                    deckValue.RemoveAt(randGen);
+                    deckSuit.RemoveAt(randGen);
+
+                    randGen = rand.Next(1, deckValue.Count);
+
+                    tempValue = deckValue[randGen];
+                    tempSuit = deckSuit[randGen];
+
                     flop3Value.Add(tempValue);
                     flop3Suit.Add(tempSuit);
+                    DrawCard(tempValue, tempSuit, 5);
+
+                    deckValue.RemoveAt(randGen);
+                    deckSuit.RemoveAt(randGen);
                     break;
 
-                case 4:
+                case "Turn":
                     turnValue.Add(tempValue);
                     turnSuit.Add(tempSuit);
+                    DrawCard(tempValue, tempSuit, 6);
+
+                    deckValue.RemoveAt(randGen);
+                    deckSuit.RemoveAt(randGen);
                     break;
 
-                case 5:
+                case "River":
                     riverValue.Add(tempValue);
                     riverSuit.Add(tempSuit);
+                    DrawCard(tempValue, tempSuit, 7);
+
+                    deckValue.RemoveAt(randGen);
+                    deckSuit.RemoveAt(randGen);
                     break;
             }
 
@@ -290,6 +332,9 @@ namespace TexasHoldEmPoker
                         p1Value.Add(tempValue);
                         p1Suit.Add(tempSuit);
 
+                        deckValue.RemoveAt(randGen);
+                        deckSuit.RemoveAt(randGen);
+
                         switch (i)
                         {
                             case 1:
@@ -311,6 +356,9 @@ namespace TexasHoldEmPoker
 
                         p2Value.Add(tempValue);
                         p2Suit.Add(tempSuit);
+
+                        deckValue.RemoveAt(randGen);
+                        deckSuit.RemoveAt(randGen);
                     }
                     break;
                 case 3:
@@ -323,6 +371,9 @@ namespace TexasHoldEmPoker
 
                         p3Value.Add(tempValue);
                         p3Suit.Add(tempSuit);
+
+                        deckValue.RemoveAt(randGen);
+                        deckSuit.RemoveAt(randGen);
                     }
                     break;
                 case 4:
@@ -335,6 +386,9 @@ namespace TexasHoldEmPoker
 
                         p4Value.Add(tempValue);
                         p4Suit.Add(tempSuit);
+
+                        deckValue.RemoveAt(randGen);
+                        deckSuit.RemoveAt(randGen);
                     }
                     break;
 
@@ -349,7 +403,7 @@ namespace TexasHoldEmPoker
             switch (suit)
             {
                 case ("Hearts"):
-                    if (value == 1)
+                    if (value == 2)
                     {
                         switch (CardToDraw)
                         {
@@ -376,7 +430,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 2)
+                    else if (value == 3)
                     {
                         switch (CardToDraw)
                         {
@@ -403,7 +457,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 3)
+                    else if (value == 4)
                     {
                         switch (CardToDraw)
                         {
@@ -430,7 +484,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 4)
+                    else if (value == 5)
                     {
                         switch (CardToDraw)
                         {
@@ -457,7 +511,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 5)
+                    else if (value == 6)
                     {
                         switch (CardToDraw)
                         {
@@ -484,7 +538,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 6)
+                    else if (value == 7)
                     {
                         switch (CardToDraw)
                         {
@@ -511,7 +565,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 7)
+                    else if (value == 8)
                     {
                         switch (CardToDraw)
                         {
@@ -538,7 +592,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 8)
+                    else if (value == 9)
                     {
                         switch (CardToDraw)
                         {
@@ -565,7 +619,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 9)
+                    else if (value == 10)
                     {
                         switch (CardToDraw)
                         {
@@ -592,7 +646,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 10)
+                    else if (value == 11)
                     {
                         switch (CardToDraw)
                         {
@@ -619,7 +673,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 11)
+                    else if (value == 12)
                     {
                         switch (CardToDraw)
                         {
@@ -646,7 +700,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 12)
+                    else if (value == 13)
                     {
                         switch (CardToDraw)
                         {
@@ -673,7 +727,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 13)
+                    else if (value == 14)
                     {
                         switch (CardToDraw)
                         {
@@ -704,7 +758,7 @@ namespace TexasHoldEmPoker
                     break;
 
                 case ("Diamonds"):
-                    if (value == 14)
+                    if (value == 2)
                     {
                         switch (CardToDraw)
                         {
@@ -731,7 +785,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 15)
+                    else if (value == 3)
                     {
                         switch (CardToDraw)
                         {
@@ -758,7 +812,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 16)
+                    else if (value == 4)
                     {
                         switch (CardToDraw)
                         {
@@ -785,7 +839,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 17)
+                    else if (value == 5)
                     {
                         switch (CardToDraw)
                         {
@@ -812,7 +866,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 18)
+                    else if (value == 6)
                     {
                         switch (CardToDraw)
                         {
@@ -839,7 +893,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 19)
+                    else if (value == 7)
                     {
                         switch (CardToDraw)
                         {
@@ -866,7 +920,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 20)
+                    else if (value == 8)
                     {
                         switch (CardToDraw)
                         {
@@ -893,7 +947,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 21)
+                    else if (value == 9)
                     {
                         switch (CardToDraw)
                         {
@@ -920,7 +974,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 22)
+                    else if (value == 10)
                     {
                         switch (CardToDraw)
                         {
@@ -947,7 +1001,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 23)
+                    else if (value == 11)
                     {
                         switch (CardToDraw)
                         {
@@ -974,7 +1028,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 24)
+                    else if (value == 12)
                     {
                         switch (CardToDraw)
                         {
@@ -1001,7 +1055,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 25)
+                    else if (value == 13)
                     {
                         switch (CardToDraw)
                         {
@@ -1028,7 +1082,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 26)
+                    else if (value == 14)
                     {
                         switch (CardToDraw)
                         {
@@ -1058,7 +1112,7 @@ namespace TexasHoldEmPoker
 
                     break;
                 case ("Clubs"):
-                    if (value == 27)
+                    if (value == 2)
                     {
                         switch (CardToDraw)
                         {
@@ -1085,7 +1139,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 28)
+                    else if (value == 3)
                     {
                         switch (CardToDraw)
                         {
@@ -1113,7 +1167,7 @@ namespace TexasHoldEmPoker
                         }
                     }
 
-                    else if (value == 29)
+                    else if (value == 4)
                     {
                         switch (CardToDraw)
                         {
@@ -1141,7 +1195,7 @@ namespace TexasHoldEmPoker
                         }
                     }
 
-                    else if (value == 30)
+                    else if (value == 5)
                     {
                         switch (CardToDraw)
                         {
@@ -1168,7 +1222,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 31)
+                    else if (value == 6)
                     {
                         switch (CardToDraw)
                         {
@@ -1195,7 +1249,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 32)
+                    else if (value == 7)
                     {
                         switch (CardToDraw)
                         {
@@ -1222,7 +1276,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 33)
+                    else if (value == 8)
                     {
                         switch (CardToDraw)
                         {
@@ -1249,7 +1303,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 34)
+                    else if (value == 9)
                     {
                         switch (CardToDraw)
                         {
@@ -1276,7 +1330,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 35)
+                    else if (value == 10)
                     {
                         switch (CardToDraw)
                         {
@@ -1303,7 +1357,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 36)
+                    else if (value == 11)
                     {
                         switch (CardToDraw)
                         {
@@ -1330,7 +1384,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 37)
+                    else if (value == 12)
                     {
                         switch (CardToDraw)
                         {
@@ -1357,7 +1411,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 38)
+                    else if (value == 13)
                     {
                         switch (CardToDraw)
                         {
@@ -1384,7 +1438,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 39)
+                    else if (value == 14)
                     {
                         switch (CardToDraw)
                         {
@@ -1413,7 +1467,7 @@ namespace TexasHoldEmPoker
                     }
                     break;
                 case ("Spades"):
-                    if (value == 40)
+                    if (value == 2)
                     {
                         switch (CardToDraw)
                         {
@@ -1440,7 +1494,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 41)
+                    else if (value == 3)
                     {
                         switch (CardToDraw)
                         {
@@ -1467,7 +1521,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 42)
+                    else if (value == 4)
                     {
                         switch (CardToDraw)
                         {
@@ -1494,7 +1548,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 43)
+                    else if (value == 5)
                     {
                         switch (CardToDraw)
                         {
@@ -1521,7 +1575,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 44)
+                    else if (value == 6)
                     {
                         switch (CardToDraw)
                         {
@@ -1548,7 +1602,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 45)
+                    else if (value == 7)
                     {
                         switch (CardToDraw)
                         {
@@ -1575,7 +1629,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 46)
+                    else if (value == 8)
                     {
                         switch (CardToDraw)
                         {
@@ -1602,7 +1656,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 47)
+                    else if (value == 9)
                     {
                         switch (CardToDraw)
                         {
@@ -1629,7 +1683,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 48)
+                    else if (value == 10)
                     {
                         switch (CardToDraw)
                         {
@@ -1656,7 +1710,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 49)
+                    else if (value == 11)
                     {
                         switch (CardToDraw)
                         {
@@ -1683,7 +1737,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 50)
+                    else if (value == 12)
                     {
                         switch (CardToDraw)
                         {
@@ -1710,7 +1764,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 51)
+                    else if (value == 13)
                     {
                         switch (CardToDraw)
                         {
@@ -1737,7 +1791,7 @@ namespace TexasHoldEmPoker
                                 break;
                         }
                     }
-                    else if (value == 52)
+                    else if (value == 14)
                     {
                         switch (CardToDraw)
                         {
