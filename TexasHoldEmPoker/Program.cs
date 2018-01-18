@@ -16,7 +16,7 @@ namespace TexasHoldEmPoker
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Poker());
+            Application.Run(new BlackJack());
         }
     }
 }
