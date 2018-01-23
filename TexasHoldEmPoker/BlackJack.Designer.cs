@@ -1,6 +1,6 @@
 ﻿namespace TexasHoldEmPoker
 {
-    partial class Poker
+    partial class BlackJack
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Poker));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BlackJack));
             this.titleLabel = new System.Windows.Forms.Label();
             this.playButton = new System.Windows.Forms.Button();
             this.optionButton = new System.Windows.Forms.Button();
@@ -192,9 +192,10 @@
             // outputLabel
             // 
             this.outputLabel.AutoSize = true;
+            this.outputLabel.Font = new System.Drawing.Font("Minion Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.outputLabel.Location = new System.Drawing.Point(273, 547);
             this.outputLabel.Name = "outputLabel";
-            this.outputLabel.Size = new System.Drawing.Size(121, 13);
+            this.outputLabel.Size = new System.Drawing.Size(162, 22);
             this.outputLabel.TabIndex = 22;
             this.outputLabel.Text = "Please Select an Option";
             this.outputLabel.Visible = false;
@@ -357,7 +358,7 @@
             this.pCard5.TabStop = false;
             this.pCard5.Visible = false;
             // 
-            // Poker
+            // BlackJack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -390,8 +391,9 @@
             this.Controls.Add(this.playButton);
             this.Controls.Add(this.titleLabel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Poker";
-            this.Text = "Texas Hold \'Em Poker";
+            this.Name = "BlackJack";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Blackjack";
             ((System.ComponentModel.ISupportInitialize)(this._50Button)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._25Button)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._5Button)).EndInit();
