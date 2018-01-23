@@ -45,15 +45,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\BlackJack.cs">
+    <Compile Include="BlackJack.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="..\..\BlackJack.Designer.cs">
+    <Compile Include="BlackJack.Designer.cs">
       <DependentUpon>BlackJack.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="..\..\BlackJack.resx">
+    <EmbeddedResource Include="BlackJack.resx">
       <DependentUpon>BlackJack.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
