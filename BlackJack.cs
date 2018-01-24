@@ -15,7 +15,7 @@ namespace TexasHoldEmPoker
 {
     public partial class BlackJack : Form
     {
-        List<int> deckNum = new List<int>();  //test
+        List<int> deckNum = new List<int>();
         List<string> deckSuit = new List<string>();
         List<int> deckValue = new List<int>();
         List<int> p1Num = new List<int>();
@@ -90,6 +90,8 @@ namespace TexasHoldEmPoker
             playButton.Visible = false;
             optionButton.Visible = false;
             exitButton.Visible = false;
+            standButton.Visible = true;
+            hitButton.Visible = true;
             exit2Button.Visible = true;
             balLabel.Visible = true;
             pCard3.Visible = true;
@@ -223,7 +225,10 @@ namespace TexasHoldEmPoker
             }
 
             CheckSum();
-            winCheck();
+            if (playerTotal == 21)
+            {
+                outputLabel.Text = "YOU WIN!";
+            }
 
         }
 
@@ -335,9 +340,6 @@ namespace TexasHoldEmPoker
 
                 DealHand();
                 DealerCards();
-
-                hitButton.Visible = true;
-                standButton.Visible = true;
             }
             else
             {
@@ -364,9 +366,6 @@ namespace TexasHoldEmPoker
 
                 DealHand();
                 DealerCards();
-
-                hitButton.Visible = true;
-                standButton.Visible = true;
             }
             else
             {
@@ -393,9 +392,6 @@ namespace TexasHoldEmPoker
 
                 DealHand();
                 DealerCards();
-
-                hitButton.Visible = true;
-                standButton.Visible = true;
             }
             else
             {
@@ -422,9 +418,6 @@ namespace TexasHoldEmPoker
 
                 DealHand();
                 DealerCards();
-
-                hitButton.Visible = true;
-                standButton.Visible = true;
             }
             else
             {
@@ -435,11 +428,9 @@ namespace TexasHoldEmPoker
         private void DealerTurn()
         { 
             CheckSum();
-            winCheck();
             if (dealerTotal >= 17)
             {
                 CheckSum();
-                winCheck();
                 playerTurn = true;
                 TurnRotation();
             }
@@ -486,7 +477,6 @@ namespace TexasHoldEmPoker
                     deckValue.RemoveAt(randGen);
 
                     CheckSum();
-                    winCheck();
                 }
 
             }
@@ -557,25 +547,6 @@ namespace TexasHoldEmPoker
 
             dealerTotal = tempVal1 + tempVal2 + tempVal3 + tempVal4 + tempVal5;
 
-        }
-
-        private void winCheck()
-        {
-            CheckSum();
-            if (playerTotal == 21)
-            {
-                outputLabel.Text = "YOU WIN!";
-                winPopUp.Visible = true;
-                Refresh();
-                DrawTable();
-            }
-            else if (playerTotal > 21)
-            {
-                outputLabel.Text = "BUST!";
-                lossPopUp.Visible = true;
-                Refresh();
-                DrawTable();
-            }
         }
 
         private void TurnRotation()
