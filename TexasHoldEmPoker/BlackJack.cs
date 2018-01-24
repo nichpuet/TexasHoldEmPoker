@@ -170,7 +170,7 @@ namespace TexasHoldEmPoker
             dSuit.Add(tempSuit);
             dValue.Add(tempValue);
 
-            DrawCard(7, tempValue, tempSuit);
+
 
             deckNum.RemoveAt(randGen);
             deckSuit.RemoveAt(randGen);
@@ -186,7 +186,6 @@ namespace TexasHoldEmPoker
             dSuit.Add(tempSuit);
             dValue.Add(tempValue);
 
-            DrawCard(8, tempValue, tempSuit);
 
             deckNum.RemoveAt(randGen);
             deckSuit.RemoveAt(randGen);
@@ -433,62 +432,66 @@ namespace TexasHoldEmPoker
         }
 
         private void DealerTurn()
-        { 
-            CheckSum();
-            winCheck();
-            if (dealerTotal >= 17)
+        {
+            bool dealerTurn = true;
+            while (dealerTurn)
             {
                 CheckSum();
                 winCheck();
-                playerTurn = true;
-                TurnRotation();
-            }
-            else if (dealerTotal <= 16) 
-            {
-                while (dealerTotal <=16)
+                if (dealerTotal >= 17)
                 {
-                    Thread.Sleep(500);
-                    Refresh();
-
-                    DrawTable();
-
-                    int randGen = rand.Next(1, deckNum.Count);
-
-                    tempValue = deckValue[randGen];
-                    tempSuit = deckSuit[randGen];
-                    tempNum = deckNum[randGen];
-
-                    dNum.Add(tempNum);
-                    dSuit.Add(tempSuit);
-                    dValue.Add(tempValue);
-
-                    dealerHand++;
-
-                    switch (dealerHand)
-                    {
-                        case 3:
-                            dCard4.Visible = true;
-                            DrawCard(9, tempValue, tempSuit);
-                            break;
-                        case 4:
-                            dCard1.Visible = true;
-                            DrawCard(6, tempValue, tempSuit);
-                            break;
-                        case 5:
-                            dCard5.Visible = true;
-                            DrawCard(10, tempValue, tempSuit);
-                            break;
-                    }
-                    dealerHand++;
-
-                    deckNum.RemoveAt(randGen);
-                    deckSuit.RemoveAt(randGen);
-                    deckValue.RemoveAt(randGen);
-
+                    dealerTurn = false;
                     CheckSum();
                     winCheck();
-                }
+                    playerTurn = true;
+                    EndRound();
+                    TurnRotation();
 
+                }
+                else if (dealerTotal <= 16)
+                {
+                    while (dealerTotal <= 16)
+                    {
+                        Thread.Sleep(500);
+                        Refresh();
+
+                        DrawTable();
+
+                        int randGen = rand.Next(1, deckNum.Count);
+
+                        tempValue = deckValue[randGen];
+                        tempSuit = deckSuit[randGen];
+                        tempNum = deckNum[randGen];
+
+                        dNum.Add(tempNum);
+                        dSuit.Add(tempSuit);
+                        dValue.Add(tempValue);
+
+                        dealerHand++;
+
+                        switch (dealerHand)
+                        {
+                            case 3:
+                                dCard4.Visible = true;
+                                break;
+                            case 4:
+                                dCard1.Visible = true;
+                                break;
+                            case 5:
+                                dCard5.Visible = true;
+                                break;
+                        }
+                        dealerHand++;
+
+                        deckNum.RemoveAt(randGen);
+                        deckSuit.RemoveAt(randGen);
+                        deckValue.RemoveAt(randGen);
+
+                        CheckSum();
+                        winCheck();
+                    }
+
+                }
             }
 
 
@@ -596,7 +599,12 @@ namespace TexasHoldEmPoker
 
         private void EndRound()
         {
-
+            for (int i = 1; i <= dNum.Count-1; i++)
+            {
+                DrawCard(5 + i, dNum[i], dSuit[i]);
+            }
+            Refresh();
+            DrawTable();
         }
     }
 
