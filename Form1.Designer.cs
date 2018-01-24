@@ -1,6 +1,6 @@
 ﻿namespace TexasHoldEmPoker
 {
-    partial class BlackJack
+    partial class Poker
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BlackJack));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Poker));
             this.titleLabel = new System.Windows.Forms.Label();
             this.playButton = new System.Windows.Forms.Button();
             this.optionButton = new System.Windows.Forms.Button();
@@ -55,8 +55,6 @@
             this.pCard3 = new System.Windows.Forms.PictureBox();
             this.pCard4 = new System.Windows.Forms.PictureBox();
             this.pCard5 = new System.Windows.Forms.PictureBox();
-            this.winPopUp = new System.Windows.Forms.PictureBox();
-            this.lossPopUp = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this._50Button)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._25Button)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._5Button)).BeginInit();
@@ -71,8 +69,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pCard3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pCard4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pCard5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.winPopUp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lossPopUp)).BeginInit();
             this.SuspendLayout();
             // 
             // titleLabel
@@ -196,10 +192,9 @@
             // outputLabel
             // 
             this.outputLabel.AutoSize = true;
-            this.outputLabel.Font = new System.Drawing.Font("Minion Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.outputLabel.Location = new System.Drawing.Point(273, 547);
             this.outputLabel.Name = "outputLabel";
-            this.outputLabel.Size = new System.Drawing.Size(162, 22);
+            this.outputLabel.Size = new System.Drawing.Size(121, 13);
             this.outputLabel.TabIndex = 22;
             this.outputLabel.Text = "Please Select an Option";
             this.outputLabel.Visible = false;
@@ -362,38 +357,12 @@
             this.pCard5.TabStop = false;
             this.pCard5.Visible = false;
             // 
-            // winPopUp
-            // 
-            this.winPopUp.BackColor = System.Drawing.Color.Transparent;
-            this.winPopUp.Image = ((System.Drawing.Image)(resources.GetObject("winPopUp.Image")));
-            this.winPopUp.Location = new System.Drawing.Point(200, 166);
-            this.winPopUp.Name = "winPopUp";
-            this.winPopUp.Size = new System.Drawing.Size(345, 213);
-            this.winPopUp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.winPopUp.TabIndex = 30;
-            this.winPopUp.TabStop = false;
-            this.winPopUp.Visible = false;
-            // 
-            // lossPopUp
-            // 
-            this.lossPopUp.BackColor = System.Drawing.Color.Transparent;
-            this.lossPopUp.Image = ((System.Drawing.Image)(resources.GetObject("lossPopUp.Image")));
-            this.lossPopUp.Location = new System.Drawing.Point(200, 166);
-            this.lossPopUp.Name = "lossPopUp";
-            this.lossPopUp.Size = new System.Drawing.Size(345, 213);
-            this.lossPopUp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.lossPopUp.TabIndex = 31;
-            this.lossPopUp.TabStop = false;
-            this.lossPopUp.Visible = false;
-            // 
-            // BlackJack
+            // Poker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(734, 661);
-            this.Controls.Add(this.lossPopUp);
-            this.Controls.Add(this.winPopUp);
             this.Controls.Add(this.pCard5);
             this.Controls.Add(this.pCard4);
             this.Controls.Add(this.pCard3);
@@ -421,9 +390,8 @@
             this.Controls.Add(this.playButton);
             this.Controls.Add(this.titleLabel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "BlackJack";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Blackjack";
+            this.Name = "Poker";
+            this.Text = "Texas Hold \'Em Poker";
             ((System.ComponentModel.ISupportInitialize)(this._50Button)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._25Button)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._5Button)).EndInit();
@@ -438,8 +406,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pCard3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pCard4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pCard5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.winPopUp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lossPopUp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -473,8 +439,6 @@
         private System.Windows.Forms.PictureBox pCard3;
         private System.Windows.Forms.PictureBox pCard4;
         private System.Windows.Forms.PictureBox pCard5;
-        private System.Windows.Forms.PictureBox winPopUp;
-        private System.Windows.Forms.PictureBox lossPopUp;
     }
 }
 
