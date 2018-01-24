@@ -568,16 +568,9 @@ namespace TexasHoldEmPoker
             if (playerTotal == 21)
             {
                 outputLabel.Text = "YOU WIN!";
-
-                pCard1.Visible = false;
-               
-                pCard4.Visible = false;
-                pCard5.Visible = false;
-                dCard1.Visible = false;
-                dCard2.Visible = false;
-                dCard3.Visible = false;
-                dCard4.Visible = false;
-                dCard5.Visible = false;
+                WinWindow winForm = new WinWindow();
+                winForm.Show();
+                
                 hitButton.Enabled = false;
                 standButton.Enabled = false;
                 Refresh();
@@ -586,17 +579,9 @@ namespace TexasHoldEmPoker
             else if (playerTotal >= 22)
             {
                 outputLabel.Text = "BUST!";
-
-                pCard1.Visible = false;
-                pCard2.Visible = false;
-                pCard3.Visible = false;
-                pCard4.Visible = false;
-                pCard5.Visible = false;
-                dCard1.Visible = false;
-                dCard2.Visible = false;
-                dCard3.Visible = false;
-                dCard4.Visible = false;
-                dCard5.Visible = false;
+                LoseWindow lossForm = new LoseWindow();
+                lossForm.Show();
+               
                 hitButton.Enabled = false;
                 standButton.Enabled = false;
                 Refresh();
@@ -607,17 +592,9 @@ namespace TexasHoldEmPoker
                 if (dealerTotal > playerTotal)
                 {
                     outputLabel.Text = "You Lost!";
-
-                    pCard1.Visible = false;
-                    pCard2.Visible = false;
-                    pCard3.Visible = false;
-                    pCard4.Visible = false;
-                    pCard5.Visible = false;
-                    dCard1.Visible = false;
-                    dCard2.Visible = false;
-                    dCard3.Visible = false;
-                    dCard4.Visible = false;
-                    dCard5.Visible = false;
+                    LoseWindow lossForm = new LoseWindow();
+                    lossForm.Show();
+                    
                     hitButton.Enabled = false;
                     standButton.Enabled = false;
                     Refresh();
@@ -626,17 +603,9 @@ namespace TexasHoldEmPoker
                 else
                 {
                     outputLabel.Text = "YOU WIN!";
+                    WinWindow winForm = new WinWindow();
+                    winForm.Show();
 
-                    pCard1.Visible = false;
-                    pCard2.Visible = false;
-                    pCard3.Visible = false;
-                    pCard4.Visible = false;
-                    pCard5.Visible = false;
-                    dCard1.Visible = false;
-                    dCard2.Visible = false;
-                    dCard3.Visible = false;
-                    dCard4.Visible = false;
-                    dCard5.Visible = false;
                     hitButton.Enabled = false;
                     standButton.Enabled = false;
                     Refresh();
