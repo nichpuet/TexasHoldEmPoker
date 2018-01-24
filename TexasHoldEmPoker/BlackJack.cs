@@ -599,9 +599,30 @@ namespace TexasHoldEmPoker
 
         private void EndRound()
         {
-            for (int i = 1; i <= dNum.Count-1; i++)
+            for (int i = 1; i < dNum.Count+1 ; i++)
             {
-                DrawCard(5 + i, dNum[i], dSuit[i]);
+                int dumbMath;
+                dumbMath = 5 + i;
+
+                switch (dumbMath)
+                {
+                    case 6:
+                        dumbMath = 7;
+                        break;
+                    case 7:
+                        dumbMath = 8;
+                        break;
+                    case 8:
+                        dumbMath = 9;
+                        break;
+                    case 9:
+                        dumbMath = 6;
+                        break;
+                    case 10:
+                        dumbMath = 10;
+                        break;
+                }
+                DrawCard(dumbMath, dNum[i-1], dSuit[i-1]);
             }
             Refresh();
             DrawTable();
