@@ -71,7 +71,7 @@ namespace TexasHoldEmPoker
                 deckValue.Add(11);
             }
         }
-
+        bool endRound = false;
         bool playerTurn = true;
         int p1Balance = 100;
         int tempValue;
@@ -568,17 +568,82 @@ namespace TexasHoldEmPoker
             if (playerTotal == 21)
             {
                 outputLabel.Text = "YOU WIN!";
-                winPopUp.Visible = true;
+
+                pCard1.Visible = false;
+               
+                pCard4.Visible = false;
+                pCard5.Visible = false;
+                dCard1.Visible = false;
+                dCard2.Visible = false;
+                dCard3.Visible = false;
+                dCard4.Visible = false;
+                dCard5.Visible = false;
+                hitButton.Enabled = false;
+                standButton.Enabled = false;
                 Refresh();
                 DrawTable();
             }
-            else if (playerTotal > 21)
+            else if (playerTotal >= 22)
             {
                 outputLabel.Text = "BUST!";
-                lossPopUp.Visible = true;
+
+                pCard1.Visible = false;
+                pCard2.Visible = false;
+                pCard3.Visible = false;
+                pCard4.Visible = false;
+                pCard5.Visible = false;
+                dCard1.Visible = false;
+                dCard2.Visible = false;
+                dCard3.Visible = false;
+                dCard4.Visible = false;
+                dCard5.Visible = false;
+                hitButton.Enabled = false;
+                standButton.Enabled = false;
                 Refresh();
                 DrawTable();
             }
+            else if (endRound)
+            {
+                if (dealerTotal > playerTotal)
+                {
+                    outputLabel.Text = "You Lost!";
+
+                    pCard1.Visible = false;
+                    pCard2.Visible = false;
+                    pCard3.Visible = false;
+                    pCard4.Visible = false;
+                    pCard5.Visible = false;
+                    dCard1.Visible = false;
+                    dCard2.Visible = false;
+                    dCard3.Visible = false;
+                    dCard4.Visible = false;
+                    dCard5.Visible = false;
+                    hitButton.Enabled = false;
+                    standButton.Enabled = false;
+                    Refresh();
+                    DrawTable();
+                }
+                else
+                {
+                    outputLabel.Text = "YOU WIN!";
+
+                    pCard1.Visible = false;
+                    pCard2.Visible = false;
+                    pCard3.Visible = false;
+                    pCard4.Visible = false;
+                    pCard5.Visible = false;
+                    dCard1.Visible = false;
+                    dCard2.Visible = false;
+                    dCard3.Visible = false;
+                    dCard4.Visible = false;
+                    dCard5.Visible = false;
+                    hitButton.Enabled = false;
+                    standButton.Enabled = false;
+                    Refresh();
+                    DrawTable();
+                }
+            }
+           
         }
 
         private void TurnRotation()
@@ -599,6 +664,7 @@ namespace TexasHoldEmPoker
 
         private void EndRound()
         {
+            endRound = true;
             for (int i = 1; i < dNum.Count+1 ; i++)
             {
                 int dumbMath;
@@ -626,6 +692,9 @@ namespace TexasHoldEmPoker
             }
             Refresh();
             DrawTable();
+
+            CheckSum();
+            winCheck();
         }
     }
 
