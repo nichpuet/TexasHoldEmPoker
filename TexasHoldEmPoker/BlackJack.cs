@@ -15,6 +15,8 @@ namespace TexasHoldEmPoker
 {
     public partial class BlackJack : Form
     {
+
+        //Initalizes the lists for decks
         List<int> deckNum = new List<int>();  //test
         List<string> deckSuit = new List<string>();
         List<int> deckValue = new List<int>();
@@ -25,7 +27,7 @@ namespace TexasHoldEmPoker
         List<string> dSuit = new List<string>();
         List<int> dValue = new List<int>();
         
-
+        //Random Generator
         Random rand = new Random();
 
         public BlackJack()
@@ -35,6 +37,7 @@ namespace TexasHoldEmPoker
         }
         public void gameInit()
         {
+            //Initializes the cards and suits
             for (int q = 1; q <= 4; q++)
             {
                 for (int i = 2; i <= 14; i++)
@@ -71,6 +74,8 @@ namespace TexasHoldEmPoker
                 deckValue.Add(11);
             }
         }
+
+        //Variuous variables for using in methods
         bool endRound = false;
         bool playerTurn = true;
         double p1Balance = 100;
@@ -86,6 +91,7 @@ namespace TexasHoldEmPoker
 
         private void playButton_Click(object sender, EventArgs e)
         {
+            //Swaps screens by making a lot of things visible or invisible
             titleLabel.Visible = false;
             playButton.Visible = false;
             optionButton.Visible = false;
@@ -108,6 +114,8 @@ namespace TexasHoldEmPoker
             System.Threading.Thread.Sleep(1);
             Refresh();
 
+
+            //Draws the table and puts the labels with the various balances 
             DrawTable();
 
             balLabel.Text = "Balance: " + p1Balance;
@@ -118,6 +126,7 @@ namespace TexasHoldEmPoker
 
         private void optionButton_Click(object sender, EventArgs e)
         {
+            //basically just switches screens again
             titleLabel.Visible = false;
             playButton.Visible = false;
             optionButton.Visible = false;
@@ -128,16 +137,19 @@ namespace TexasHoldEmPoker
 
         private void exitButton_Click(object sender, EventArgs e)
         {
+            //Closes Program
             this.Close();
         }
 
         private void exit2Button_Click(object sender, EventArgs e)
         {
+            //Closes program
             this.Close();
         }
 
         private void DrawTable()
         {
+            //Draws the table in the middle of the screen
             Graphics fG = this.CreateGraphics();
             SolidBrush tableBrush = new SolidBrush(Color.Olive);
             Pen tablePen = new Pen(Color.Brown, 15);
@@ -150,6 +162,7 @@ namespace TexasHoldEmPoker
 
         private void backButton_Click(object sender, EventArgs e)
         {
+            //Goes back to the main menu from the options menu
             titleLabel.Visible = true;
             playButton.Visible = true;
             optionButton.Visible = true;
@@ -160,6 +173,7 @@ namespace TexasHoldEmPoker
 
         private void DealerCards()
         {
+            //Deals the dealer 2 random cards and removes them from the deck
             int randGen = rand.Next(1, deckNum.Count);
 
             tempValue = deckValue[randGen];
@@ -194,6 +208,7 @@ namespace TexasHoldEmPoker
 
         private void DealHand()
         {
+            //Deals the player 2 cards and removes them from the deck
             for (int i = 1; i <= 2; i++)
             {
                 int randGen = rand.Next(1, deckNum.Count);
@@ -212,6 +227,7 @@ namespace TexasHoldEmPoker
 
                 switch (i)
                 {
+                    //Draws the cards in their place
                     case 1:
                         DrawCard(3, tempNum, tempSuit);
                         break;
@@ -220,7 +236,7 @@ namespace TexasHoldEmPoker
                         break;
                 }
             }
-
+            //Checks the players score and if they've won
             CheckSum();
             winCheck();
 
@@ -228,6 +244,7 @@ namespace TexasHoldEmPoker
 
         private void DrawCard(int location, int value, string suit)
         {
+            //Draws cards based on the desired location, value of card, and suit of card
             filename = suit + value;
             switch (location)
             {
@@ -272,6 +289,7 @@ namespace TexasHoldEmPoker
 
         private void Hit()
         {
+            //Deals the player a new card, draws it, then removes it from the deck
             int randGen = rand.Next(1, deckNum.Count);
 
             tempNum = deckNum[randGen];
@@ -307,95 +325,111 @@ namespace TexasHoldEmPoker
 
         private void Stand()
         {
+            //Switches to the dealers turn
             playerTurn = false;
             TurnRotation();
         }
 
         private void standButton_Click(object sender, EventArgs e)
         {
+            //Stands
             Stand();
         }
 
         private void hitButton_Click(object sender, EventArgs e)
-        {
+        {//Hits
             Hit();
         }
 
         private void _5Button_Click(object sender, EventArgs e)
         {
+            //Checks to see if the player can afford that bet
             if (p1Balance >= 5)
             {
+                //Removes 5 from the players balance and adds it to the pot
                 p1Balance = p1Balance - 5;
                 pot = pot + 5;
 
+                //Shows the updated balance and displays a little message
                 balLabel.Text = "Balance: " + p1Balance;
                 potLabel.Text = "Pot: " + pot;
-
                 outputLabel.Text = "Bet placed";
 
+                //Disables the buttons for betting after
                 _5Button.Enabled = false;
                 _10Button.Enabled = false;
                 _25Button.Enabled = false;
                 _50Button.Enabled = false;
 
+                //Deals rhe player their hand and the dealers hand
                 DealHand();
                 DealerCards();
 
+                //Shows the hit and stand buttons
                 hitButton.Visible = true;
                 standButton.Visible = true;
             }
             else
             {
+                //Tells you to pick another amount if you don't have enough
                 outputLabel.Text = "Your balance is too low, pick another amount";
             }
         }
 
         private void _10Button_Click(object sender, EventArgs e)
         {
+            //Checks to see if you can afford the bet
             if (p1Balance >= 10)
             {
+                //Does the math for the updated balance and displays ot
                 p1Balance = p1Balance - 10;
                 pot = pot + 10;
 
                 balLabel.Text = "Balance: " + p1Balance;
                 potLabel.Text = "Pot: " + pot;
-
                 outputLabel.Text = "Bet placed";
 
+                //Disables bet buttons after
                 _5Button.Enabled = false;
                 _10Button.Enabled = false;
                 _25Button.Enabled = false;
                 _50Button.Enabled = false;
 
+                //Deals the player and dealer hand
                 DealHand();
                 DealerCards();
 
+                //Makes the buttons visible
                 hitButton.Visible = true;
                 standButton.Visible = true;
             }
             else
             {
+                //Tells you to pick another amount if you can't afford it
                 outputLabel.Text = "Your balance is too low, pick another amount";
             }
         }
 
         private void _25Button_Click(object sender, EventArgs e)
         {
+            //Checks to see if you can afford the bet
             if (p1Balance >= 25)
             {
+                //Does the math and shows the updated balance
                 p1Balance = p1Balance - 25;
                 pot = pot + 25;
 
                 balLabel.Text = "Balance: " + p1Balance;
                 potLabel.Text = "Pot: " + pot;
-
                 outputLabel.Text = "Bet placed";
 
+                //Disables the buttons for betting
                 _5Button.Enabled = false;
                 _10Button.Enabled = false;
                 _25Button.Enabled = false;
                 _50Button.Enabled = false;
 
+                //Deals hand and makes the buttons visible
                 DealHand();
                 DealerCards();
 
@@ -404,27 +438,31 @@ namespace TexasHoldEmPoker
             }
             else
             {
+                //Displays a message if they can't afford it
                 outputLabel.Text = "Your balance is too low, pick another amount";
             }
         }
 
         private void _50Button_Click(object sender, EventArgs e)
         {
+            //Checks to see if player can afford the bet
             if (p1Balance >= 50)
             {
+                //Does the maths and shows the updated balance
                 p1Balance = p1Balance - 50;
                 pot = pot + 50;
 
                 balLabel.Text = "Balance: " + p1Balance;
                 potLabel.Text = "Pot: " + pot;
-
                 outputLabel.Text = "Bet placed";
 
+                //Disables the betting buttons
                 _5Button.Enabled = false;
                 _10Button.Enabled = false;
                 _25Button.Enabled = false;
                 _50Button.Enabled = false;
 
+                //Deals hands and makes the buttons visible
                 DealHand();
                 DealerCards();
 
@@ -433,6 +471,7 @@ namespace TexasHoldEmPoker
             }
             else
             {
+                //Displays a message if the balance is too low.
                 outputLabel.Text = "Your balance is too low, pick another amount";
             }
         }
@@ -440,10 +479,14 @@ namespace TexasHoldEmPoker
         private void DealerTurn()
         {
             bool dealerTurn = true;
+            //Runs a loop so that the dealer can "stand"
             while (dealerTurn)
             {
+                //Checks the dealers score for checking against
                 CheckSum();
                 winCheck();
+
+                //If the dealers score is above 17, ends the dealers turn and does the endRound method
                 if (dealerTotal >= 17)
                 {
                     dealerTurn = false;
@@ -454,10 +497,12 @@ namespace TexasHoldEmPoker
                     TurnRotation();
 
                 }
+                //If the dealer has less than 16 he hits and tries to get over 17
                 else if (dealerTotal <= 16)
                 {
                     while (dealerTotal <= 16)
                     {
+                        //Has a small delay then draws a new card and removes it from the deck
                         Thread.Sleep(500);
                         Refresh();
 
@@ -505,10 +550,11 @@ namespace TexasHoldEmPoker
 
         private void CheckSum()
         {
-
+            
             int quickMaths1 = 0, quickMaths2 = 0;
             int tempVal1 = 0, tempVal2 = 0, tempVal3 = 0, tempVal4 = 0, tempVal5 = 0;
             
+            //Does the players score if aces == 11
                 for (int i = 1; i <= p1Value.Count(); i++)
                 {
                     if (i == 1)
@@ -539,6 +585,7 @@ namespace TexasHoldEmPoker
                     }
 
                 }
+                //Does the math for if aces ==1
                 for (int i = 1; i <= p1Value.Count(); i++)
                 {
                     if (i == 1)
@@ -565,7 +612,7 @@ namespace TexasHoldEmPoker
 
                 }
             
-
+                //Decides which version would be better for use
             if (quickMaths1 > quickMaths2 && quickMaths1 <= 21)
             {
                 playerTotal = quickMaths1;
@@ -585,7 +632,7 @@ namespace TexasHoldEmPoker
             tempVal4 = 0;
             tempVal5 = 0;
 
-
+            //Does the math for if aces = 11
                 for (int i = 1; i <= dValue.Count(); i++)
                 {
                     if (i == 1)
@@ -608,14 +655,16 @@ namespace TexasHoldEmPoker
                     {
                         tempVal5 = dValue[i - 1];
                     }
-                    if (dValue[i-1] == 11)
+                //Switches 11's to 1's
+                if (dValue[i-1] == 11)
                     {
                         dValue[i - 1] = 1;
                     }
                 }
 
                quickMaths1 = tempVal1 + tempVal2 + tempVal3 + tempVal4 + tempVal5;
-
+            
+            //Does the math for if aces = 1
                 for (int i =1; i <= dValue.Count(); i++)
                 {
                     if (i == 1)
@@ -646,6 +695,7 @@ namespace TexasHoldEmPoker
                 }
             quickMaths2 = tempVal1 + tempVal2 + tempVal3 + tempVal4 + tempVal5;
 
+            //Decides which value is better
             if (quickMaths1 > quickMaths2 && quickMaths1 <= 21)
             {
                 playerTotal = quickMaths1;
@@ -662,15 +712,18 @@ namespace TexasHoldEmPoker
 
         private void winCheck()
         {
+            //finds the players score 
             CheckSum();
 
-
+            //Checks to see if the player has 21
             if (playerTotal == 21)
             {
+                //Displays you win at the bottom of the screen and in a pop-up window
                 outputLabel.Text = "YOU WIN!";
                 WinWindow winForm = new WinWindow();
                 winForm.Show();
 
+                //Pays out the player and displays the updated balance
                 pot = pot * 1.5;
                 p1Balance = p1Balance + pot;
                 pot = 0;
@@ -678,7 +731,7 @@ namespace TexasHoldEmPoker
                 balLabel.Text = "Balance: " + p1Balance;
                 potLabel.Text = "Pot: " + pot;
 
-
+                //Disables the buttons and displays the new hand button. Also redraws the table
                 hitButton.Enabled = false;
                 standButton.Enabled = false;
 
@@ -688,17 +741,21 @@ namespace TexasHoldEmPoker
 
                 DrawTable();
             }
+            //If the player goes above 22 they bust
             else if (playerTotal >= 22)
             {
+                //Shows bust at the bottom and has a loss pop-up
                 outputLabel.Text = "BUST!";
                 LossWindow lossForm = new LossWindow();
                 lossForm.Show();
 
+                //Clears the pot and displays the updated balances
                 pot = 0;
 
                 balLabel.Text = "Balance: " + p1Balance;
                 potLabel.Text = "Pot: " + pot;
 
+                //Disables the buttons and shows the new hand button. Also redraws the table
                 hitButton.Enabled = false;
                 standButton.Enabled = false;
 
@@ -710,18 +767,24 @@ namespace TexasHoldEmPoker
             }
             else if (endRound)
             {
+                //Only runs if the end round variable is true
                 endRound = false;
+
+                //If the dealer has a higher score than the player and doesnt bust
                 if (dealerTotal > playerTotal && dealerTotal <=21)
                 {
+                    //Displays that you lost and shows the loss pop-up
                     outputLabel.Text = "You Lost!";
                     LossWindow lossForm = new LossWindow();
                     lossForm.Show();
 
+                    //Clears the pot and displays the updated balance
                     pot = 0;
 
                     balLabel.Text = "Balance: " + p1Balance;
                     potLabel.Text = "Pot: " + pot;
 
+                    //Disables the buttons and shows the new hand button. Also redraws the table
                     hitButton.Enabled = false;
                     standButton.Enabled = false;
                     newHandButton.Visible = true;
@@ -731,10 +794,12 @@ namespace TexasHoldEmPoker
                 }
                 else
                 {
+                    //Displays you win and the win pop-up comes up
                     outputLabel.Text = "YOU WIN!";
                     WinWindow winForm = new WinWindow();
                     winForm.Show();
 
+                    //Does the payout and clears the pot. Updates the balance on the screen
                     pot = pot * 1.5;
                     p1Balance = p1Balance + pot;
                     pot = 0;
@@ -742,6 +807,7 @@ namespace TexasHoldEmPoker
                     balLabel.Text = "Balance: " + p1Balance;
                     potLabel.Text = "Pot: " + pot;
 
+                    //Disables the buttons and makes the new hand button visible. Also redraws the table
                     hitButton.Enabled = false;
                     standButton.Enabled = false;
                     newHandButton.Visible = true;
@@ -755,11 +821,13 @@ namespace TexasHoldEmPoker
 
         private void TurnRotation()
         {
+            //if its the players turn, enables the buttons
             if (playerTurn)
             {
                 standButton.Enabled = true;
                 hitButton.Enabled = true;
             }
+            //Else disables the buttons and starts the dealers turn
             else
             {
                 standButton.Enabled = false;
@@ -771,6 +839,8 @@ namespace TexasHoldEmPoker
 
         private void EndRound()
         {
+            //So this is here cause I did some really dumb stuff early on and now its coming back
+            //It changes the values of where to draw the card cause they come up in the order 2,3,4,1,5
             endRound = true;
             for (int i = 1; i < dNum.Count()+1 ; i++)
             {
@@ -797,6 +867,7 @@ namespace TexasHoldEmPoker
                 }
                 DrawCard(dumbMath, dNum[i-1], dSuit[i-1]);
             }
+            //Updates the screen, redraws the table, and checks to see who wins
             Refresh();
             DrawTable();
 
@@ -808,6 +879,7 @@ namespace TexasHoldEmPoker
 
         private void newHandButton_Click(object sender, EventArgs e)
         {
+            //Resets the values of almost everything to the starting values for a new hand
             _5Button.Enabled = true;
             _10Button.Enabled = true;
             _25Button.Enabled = true;
@@ -839,6 +911,7 @@ namespace TexasHoldEmPoker
             dValue.Clear();
             dSuit.Clear();
 
+            //Should mean that the deck only resets to 52 cards if there are less than 10 cards left in the deck
             if (deckSuit.Count < 10)
             {
                 deckSuit.Clear();
