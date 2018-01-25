@@ -1,6 +1,6 @@
 ﻿namespace TexasHoldEmPoker
 {
-    partial class LoseWindow
+    partial class LossWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoseWindow));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LossWindow));
             this.lossBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.lossBox)).BeginInit();
             this.SuspendLayout();
@@ -44,14 +44,15 @@
             this.lossBox.TabIndex = 0;
             this.lossBox.TabStop = false;
             // 
-            // LoseWindow
+            // LossWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(307, 170);
             this.Controls.Add(this.lossBox);
-            this.Name = "LoseWindow";
-            this.Text = "LoseWindow";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "LossWindow";
+            this.Text = "Loss Pop-up";
             ((System.ComponentModel.ISupportInitialize)(this.lossBox)).EndInit();
             this.ResumeLayout(false);
 

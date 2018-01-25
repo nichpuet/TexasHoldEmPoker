@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace TexasHoldEmPoker
 {
-    public partial class LoseWindow : Form
+    public partial class LossWindow : Form
     {
-        public LoseWindow()
+        public LossWindow()
         {
             InitializeComponent();
         }

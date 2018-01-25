@@ -55,6 +55,7 @@
             this.pCard3 = new System.Windows.Forms.PictureBox();
             this.pCard4 = new System.Windows.Forms.PictureBox();
             this.pCard5 = new System.Windows.Forms.PictureBox();
+            this.newHandButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this._50Button)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._25Button)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._5Button)).BeginInit();
@@ -192,10 +193,10 @@
             // outputLabel
             // 
             this.outputLabel.AutoSize = true;
-            this.outputLabel.Font = new System.Drawing.Font("Minion Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.outputLabel.Font = new System.Drawing.Font("Minion Pro", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.outputLabel.Location = new System.Drawing.Point(273, 547);
             this.outputLabel.Name = "outputLabel";
-            this.outputLabel.Size = new System.Drawing.Size(162, 22);
+            this.outputLabel.Size = new System.Drawing.Size(195, 26);
             this.outputLabel.TabIndex = 22;
             this.outputLabel.Text = "Please Select an Option";
             this.outputLabel.Visible = false;
@@ -358,12 +359,24 @@
             this.pCard5.TabStop = false;
             this.pCard5.Visible = false;
             // 
+            // newHandButton
+            // 
+            this.newHandButton.Location = new System.Drawing.Point(333, 614);
+            this.newHandButton.Name = "newHandButton";
+            this.newHandButton.Size = new System.Drawing.Size(75, 23);
+            this.newHandButton.TabIndex = 30;
+            this.newHandButton.Text = "Next Hand";
+            this.newHandButton.UseVisualStyleBackColor = true;
+            this.newHandButton.Visible = false;
+            this.newHandButton.Click += new System.EventHandler(this.newHandButton_Click);
+            // 
             // BlackJack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(734, 661);
+            this.Controls.Add(this.newHandButton);
             this.Controls.Add(this.pCard5);
             this.Controls.Add(this.pCard4);
             this.Controls.Add(this.pCard3);
@@ -441,6 +454,7 @@
         private System.Windows.Forms.PictureBox pCard3;
         private System.Windows.Forms.PictureBox pCard4;
         private System.Windows.Forms.PictureBox pCard5;
+        private System.Windows.Forms.Button newHandButton;
     }
 }
 

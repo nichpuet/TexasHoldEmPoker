@@ -73,12 +73,12 @@ namespace TexasHoldEmPoker
         }
         bool endRound = false;
         bool playerTurn = true;
-        int p1Balance = 100;
+        double p1Balance = 100;
         int tempValue;
         int tempNum;
         string tempSuit;
         string filename;
-        int pot;
+        double pot;
         int cardsInHand = 2;
         int dealerTotal;
         int playerTotal;
@@ -274,14 +274,17 @@ namespace TexasHoldEmPoker
         {
             int randGen = rand.Next(1, deckNum.Count);
 
-            tempValue = deckNum[randGen];
+            tempNum = deckNum[randGen];
             tempSuit = deckSuit[randGen];
+            tempNum = deckValue[randGen];
 
-            p1Num.Add(tempValue);
+            p1Num.Add(tempNum);
             p1Suit.Add(tempSuit);
+            p1Value.Add(tempValue);
 
             deckNum.RemoveAt(randGen);
             deckSuit.RemoveAt(randGen);
+            deckValue.RemoveAt(randGen);
 
             cardsInHand++;
             switch (cardsInHand)
@@ -296,6 +299,9 @@ namespace TexasHoldEmPoker
                     DrawCard(5, tempValue, tempSuit);
                     break;
             }
+
+            CheckSum();
+            winCheck();
 
         }
 
@@ -499,32 +505,79 @@ namespace TexasHoldEmPoker
 
         private void CheckSum()
         {
+
+            int quickMaths1 = 0, quickMaths2 = 0;
             int tempVal1 = 0, tempVal2 = 0, tempVal3 = 0, tempVal4 = 0, tempVal5 = 0;
-            for (int i = 1; i <= p1Value.Count(); i++)
+            
+                for (int i = 1; i <= p1Value.Count(); i++)
+                {
+                    if (i == 1)
+                    {
+                        tempVal1 = p1Value[i - 1];
+                    }
+                    else if (i == 2)
+                    {
+                        tempVal2 = p1Value[i - 1];
+                    }
+                    else if (i == 3)
+                    {
+                        tempVal3 = p1Value[i - 1];
+                    }
+                    else if (i == 4)
+                    {
+                        tempVal4 = p1Value[i - 1];
+                    }
+                    else
+                    {
+                        tempVal5 = p1Value[i - 1];
+                    }
+                    quickMaths1 = tempVal1 + tempVal2 + tempVal3 + tempVal4 + tempVal5;
+
+                    if (p1Value[i - 1] == 11)
+                    {
+                        p1Value[i - 1] = 1;
+                    }
+
+                }
+                for (int i = 1; i <= p1Value.Count(); i++)
+                {
+                    if (i == 1)
+                    {
+                        tempVal1 = p1Value[i - 1];
+                    }
+                    else if (i == 2)
+                    {
+                        tempVal2 = p1Value[i - 1];
+                    }
+                    else if (i == 3)
+                    {
+                        tempVal3 = p1Value[i - 1];
+                    }
+                    else if (i == 4)
+                    {
+                        tempVal4 = p1Value[i - 1];
+                    }
+                    else
+                    {
+                        tempVal5 = p1Value[i - 1];
+                    }
+                    quickMaths2 = tempVal1 + tempVal2 + tempVal3 + tempVal4 + tempVal5;
+
+                }
+            
+
+            if (quickMaths1 > quickMaths2 && quickMaths1 <= 21)
             {
-                if (i == 1)
-                {
-                    tempVal1 = p1Value[i-1];
-                }
-                else if (i == 2)
-                {
-                    tempVal2 = p1Value[i-1];
-                }
-                else if (i == 3)
-                {
-                    tempVal3 = p1Value[i-1];
-                }
-                else if (i == 4)
-                {
-                    tempVal4 = p1Value[i - 1];
-                }
-                else
-                {
-                    tempVal5 = p1Value[i - 1];
-                }
-               
+                playerTotal = quickMaths1;
             }
-            playerTotal = tempVal1 + tempVal2 + tempVal3 + tempVal4 + tempVal5;
+            else if (quickMaths2 <= 21)
+            {
+                playerTotal = quickMaths2;
+            }
+            else
+            {
+                playerTotal = quickMaths1;
+            }
 
             tempVal1 = 0;
             tempVal2 = 0;
@@ -532,71 +585,147 @@ namespace TexasHoldEmPoker
             tempVal4 = 0;
             tempVal5 = 0;
 
-            for (int i = 1; i <= dValue.Count(); i++)
+
+                for (int i = 1; i <= dValue.Count(); i++)
+                {
+                    if (i == 1)
+                    {
+                        tempVal1 = dValue[i - 1];
+                    }
+                    else if (i == 2)
+                    {
+                        tempVal2 = dValue[i - 1];
+                    }
+                    else if (i == 3)
+                    {
+                        tempVal3 = dValue[i - 1];
+                    }
+                    else if (i == 4)
+                    {
+                        tempVal4 = dValue[i - 1];
+                    }
+                    else
+                    {
+                        tempVal5 = dValue[i - 1];
+                    }
+                    if (dValue[i-1] == 11)
+                    {
+                        dValue[i - 1] = 1;
+                    }
+                }
+
+               quickMaths1 = tempVal1 + tempVal2 + tempVal3 + tempVal4 + tempVal5;
+
+                for (int i =1; i <= dValue.Count(); i++)
+                {
+                    if (i == 1)
+                    {
+                        tempVal1 = dValue[i - 1];
+                    }
+                    else if (i == 2)
+                    {
+                        tempVal2 = dValue[i - 1];
+                    }
+                    else if (i == 3)
+                    {
+                        tempVal3 = dValue[i - 1];
+                    }
+                    else if (i == 4)
+                    {
+                        tempVal4 = dValue[i - 1];
+                    }
+                    else
+                    {
+                        tempVal5 = dValue[i - 1];
+                    }
+                    if (dValue[i - 1] == 11)
+                    {
+                        dValue[i - 1] = 1;
+                    }
+                    
+                }
+            quickMaths2 = tempVal1 + tempVal2 + tempVal3 + tempVal4 + tempVal5;
+
+            if (quickMaths1 > quickMaths2 && quickMaths1 <= 21)
             {
-                if (i == 1)
-                {
-                    tempVal1 = dValue[i - 1];
-                }
-                else if (i == 2)
-                {
-                    tempVal2 = dValue[i - 1];
-                }
-                else if (i == 3)
-                {
-                    tempVal3 = dValue[i - 1];
-                }
-                else if (i == 4)
-                {
-                    tempVal4 = dValue[i - 1];
-                }
-                else
-                {
-                    tempVal5 = dValue[i - 1];
-                }
-
+                playerTotal = quickMaths1;
             }
-
-
-            dealerTotal = tempVal1 + tempVal2 + tempVal3 + tempVal4 + tempVal5;
-
+            else if (quickMaths2 <= 21)
+            {
+                dealerTotal = quickMaths2;
+            }
+            else
+            {
+                dealerTotal = quickMaths1;
+            }
         }
 
         private void winCheck()
         {
             CheckSum();
+
+
             if (playerTotal == 21)
             {
                 outputLabel.Text = "YOU WIN!";
                 WinWindow winForm = new WinWindow();
                 winForm.Show();
-                
+
+                pot = pot * 1.5;
+                p1Balance = p1Balance + pot;
+                pot = 0;
+
+                balLabel.Text = "Balance: " + p1Balance;
+                potLabel.Text = "Pot: " + pot;
+
+
                 hitButton.Enabled = false;
                 standButton.Enabled = false;
+
                 Refresh();
+
+                newHandButton.Visible = true;
+
                 DrawTable();
             }
             else if (playerTotal >= 22)
             {
                 outputLabel.Text = "BUST!";
-                LoseWindow lossForm = new LoseWindow();
+                LossWindow lossForm = new LossWindow();
                 lossForm.Show();
-               
+
+                pot = 0;
+
+                balLabel.Text = "Balance: " + p1Balance;
+                potLabel.Text = "Pot: " + pot;
+
                 hitButton.Enabled = false;
                 standButton.Enabled = false;
+
                 Refresh();
+
+                newHandButton.Visible = true;
+
                 DrawTable();
             }
             else if (endRound)
             {
-                if (dealerTotal > playerTotal)
+                endRound = false;
+                if (dealerTotal > playerTotal && dealerTotal <=21)
                 {
                     outputLabel.Text = "You Lost!";
-                    LoseWindow lossForm = new LoseWindow();
+                    LossWindow lossForm = new LossWindow();
                     lossForm.Show();
-                    
+
+                    pot = 0;
+
+                    balLabel.Text = "Balance: " + p1Balance;
+                    potLabel.Text = "Pot: " + pot;
+
                     hitButton.Enabled = false;
                     standButton.Enabled = false;
+                    newHandButton.Visible = true;
+
                     Refresh();
                     DrawTable();
                 }
@@ -606,8 +735,17 @@ namespace TexasHoldEmPoker
                     WinWindow winForm = new WinWindow();
                     winForm.Show();
 
+                    pot = pot * 1.5;
+                    p1Balance = p1Balance + pot;
+                    pot = 0;
+
+                    balLabel.Text = "Balance: " + p1Balance;
+                    potLabel.Text = "Pot: " + pot;
+
                     hitButton.Enabled = false;
                     standButton.Enabled = false;
+                    newHandButton.Visible = true;
+
                     Refresh();
                     DrawTable();
                 }
@@ -634,7 +772,7 @@ namespace TexasHoldEmPoker
         private void EndRound()
         {
             endRound = true;
-            for (int i = 1; i < dNum.Count+1 ; i++)
+            for (int i = 1; i < dNum.Count()+1 ; i++)
             {
                 int dumbMath;
                 dumbMath = 5 + i;
@@ -664,6 +802,57 @@ namespace TexasHoldEmPoker
 
             CheckSum();
             winCheck();
+
+
+        }
+
+        private void newHandButton_Click(object sender, EventArgs e)
+        {
+            _5Button.Enabled = true;
+            _10Button.Enabled = true;
+            _25Button.Enabled = true;
+            _50Button.Enabled = true;
+            hitButton.Enabled = true;
+            standButton.Enabled = true;
+            hitButton.Visible = false;
+            standButton.Visible = false;
+            newHandButton.Visible = false;
+
+            pCard1.Visible = false;
+            pCard4.Visible = false;
+            pCard5.Visible = false;
+            dCard1.Visible = false;
+            dCard4.Visible = false;
+            dCard5.Visible = false;
+
+            outputLabel.Text = "Please select an amount to bet";
+
+            pCard2.Image = Image.FromFile("CardBack.png");
+            pCard3.Image = Image.FromFile("CardBack.png");
+            dCard2.Image = Image.FromFile("CardBack.png");
+            dCard3.Image = Image.FromFile("CardBack.png");
+
+            p1Num.Clear();
+            p1Value.Clear();
+            p1Suit.Clear();
+            dNum.Clear();
+            dValue.Clear();
+            dSuit.Clear();
+
+            if (deckSuit.Count < 10)
+            {
+                deckSuit.Clear();
+                deckNum.Clear();
+                deckValue.Clear();
+
+                gameInit();
+            }
+
+            cardsInHand = 2;
+            dealerHand = 2;
+
+            gameInit();
+            DrawTable();
         }
     }
 

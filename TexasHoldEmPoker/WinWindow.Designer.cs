@@ -50,8 +50,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(308, 171);
             this.Controls.Add(this.winBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "WinWindow";
-            this.Text = "WinWindow";
+            this.Text = "Win Pop-up";
             ((System.ComponentModel.ISupportInitialize)(this.winBox)).EndInit();
             this.ResumeLayout(false);
 
